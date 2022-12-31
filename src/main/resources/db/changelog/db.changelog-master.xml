@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+  xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd 
+   http://www.liquibase.org/xml/ns/dbchangelog 
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet id="1" author="hany">
+	    <createTable tableName="user">
+	      <column name="id" type="bigint">
+	        <constraints primaryKey="true" primaryKeyName="user_pkey"/>
+	      </column>
+	        <column name="username" type="varchar(100)">
+	        <constraints nullable="false" />
+	      </column>
+	      <column name="email" type="varchar(254)">
+	        <constraints nullable="false" />
+	      </column>
+	      <column name="password" type="varchar(60)">
+	        <constraints nullable="false" />
+	      </column>
+	      <column name="activated" type="boolean">
+	        <constraints nullable="false" />
+	      </column>
+	      <column name="lang_key" type="varchar(50)">
+	      </column>
+	      <column name="image_url" type="varchar(254)">
+	      </column>
+	      <column name="activation_key" type="varchar(254)">
+	      </column>
+	      <column name="reset_key" type="varchar(254)">
+	      </column>
+	      <column name="reset_date" type="date">
+	      </column>
+	      <column name="created_by" type="varchar(50)">
+	      </column>
+	      <column name="created_date" type="timestamp">
+	      </column>
+	      <column name="last_modified_by" type="varchar(50)">
+	      </column>
+	      <column name="last_modified_date" type="timestamp">
+	      </column>
+	    </createTable>
+	    
+	    <createTable tableName="authority">
+	      <column name="name" type="varchar(50)">
+	        <constraints primaryKey="true" primaryKeyName="authority_pkey" />
+	      </column>
+	    </createTable>
+	    
+	    
+	    <createTable tableName="user_authority">
+	      <column name="user_id" type="bigint">
+	        <constraints nullable="false" />
+	      </column>
+	      <column name="authority_name" type="varchar(50)">
+	        <constraints nullable="false" />
+	      </column>
+	    </createTable>
+	    
+	    <addForeignKeyConstraint baseColumnNames="user_id"
+	                             baseTableName="user_authority"
+	                             constraintName="fk_user_id"   
+	                             referencedColumnNames="id" 
+	                             referencedTableName="user"  
+	    />
+	      <addForeignKeyConstraint baseColumnNames="authority_name"
+	                             baseTableName="user_authority"
+	                             constraintName="fk_authority_name"   
+	                             referencedColumnNames="name" 
+	                             referencedTableName="authority"  
+	    />
+	</changeSet>	    
+	    	
+</databaseChangeLog>
+		
+		

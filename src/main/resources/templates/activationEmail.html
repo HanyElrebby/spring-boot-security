@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Activation</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+    </head>
+    <body>
+        <p>
+            <a th:href="@{|${baseUrl}/activate?key=${user.activationKey}|}"
+               th:text="@{|${baseUrl}/activate?key=${user.activationKey}|}">Activation Link</a>
+        </p>
+    </body>
+</html>
